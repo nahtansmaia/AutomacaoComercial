@@ -14,8 +14,8 @@
                 Dashboard
               </v-list-item-content>
             </v-list-item>
-            <!-- Filial Button -->
-            <v-list-item @click=" navigation('Branch')">
+            <!-- Product Button -->
+            <v-list-item @click=" navigation('Product')">
               <v-list-item-action>
                 <v-icon>mdi-briefcase-plus</v-icon>
               </v-list-item-action>
@@ -23,7 +23,7 @@
                 Produtos
               </v-list-item-content>
             </v-list-item>
-            <!-- People Button -->
+            <!-- Costumers Button -->
             <v-list-item @click=" navigation('Employee')">
               <v-list-item-action>
                 <v-icon>mdi-account-multiple</v-icon>
@@ -32,22 +32,13 @@
                 Clientes
               </v-list-item-content>
             </v-list-item>
-            <!-- Filter Button -->
-            <v-list-item @click=" navigation('Filter')">
+            <!-- Category Button -->
+            <v-list-item @click=" navigation('Category')">
               <v-list-item-action>
                 <v-icon>mdi-source-branch</v-icon>
               </v-list-item-action>
               <v-list-item-content>
                 Categorias
-              </v-list-item-content>
-            </v-list-item>
-            <!-- Configuration Button -->
-            <v-list-item @click=" navigation('Config')">
-              <v-list-item-action>
-                <v-icon>mdi-cart-plus</v-icon>
-              </v-list-item-action>
-              <v-list-item-content>
-                Vendas
               </v-list-item-content>
             </v-list-item>
             <!-- About Button -->
@@ -76,10 +67,10 @@
         <v-app-bar app clipped-left>
           <!-- navbar top -->
           <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-          <v-toolbar-title>Automação</v-toolbar-title>
+          <v-toolbar-title>Automação </v-toolbar-title>
         </v-app-bar>
         <!-- Float Button -->
-        <v-btn bottom color="red" name="add" fab fixed right large @click=" navigation('AppListEntities')">
+        <v-btn bottom color="red" name="add" fab fixed right large @click=" navigation('Sales')">
           <v-icon>mdi-plus</v-icon>
         </v-btn>
       </v-app>
@@ -97,6 +88,9 @@ export default {
   data: () => ({
     drawer: false,
   }),
+  mounted() {
+    this.navigation('DashBoard')
+  },
   methods: {
     navigation(where){
       this.$router.push({name: where})

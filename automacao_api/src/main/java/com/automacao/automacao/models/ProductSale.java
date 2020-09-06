@@ -50,4 +50,5 @@ public class ProductSale {
     public void setTotalItem(Double totalItem) {
         this.totalItem = totalItem;
     }
+
 }

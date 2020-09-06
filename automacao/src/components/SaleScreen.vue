@@ -104,7 +104,7 @@
           <v-row>
             <v-col cols="12">
               <v-data-table :headers="headers" :items="itemList" sort-by="code" class="elevation-1">
-                <template v-slot:item.actionbutton="{ item }">
+                  <template v-slot:[`item.actionbutton`]="{ item }">
                   <v-icon class="mr-2" color="error" @click="deleteItem(item)">mdi-delete</v-icon>
                 </template>
               </v-data-table>
@@ -231,12 +231,10 @@ export default {
         this.itemsDefault.stock - this.itemsDefault.amount;
       this.itemsDefault.totalItem =
         this.itemsDefault.amount * this.itemsDefault.value;
-      this.sale.salePrice = this.itemsDefault.totalItem + this.sale.salePrice;
       this.itemList.push(this.itemsDefault);
       this.itemsDefault = {};
     },
     save() {
-      //const dtIssue = new Date().toString()
       this.sale.IssueDate = this.date;
       this.sale.productSale = this.itemList;
       console.log(this.itemList);

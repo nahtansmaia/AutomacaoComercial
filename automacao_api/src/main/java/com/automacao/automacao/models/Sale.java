@@ -52,7 +52,7 @@ public class Sale {
     }
 
     public Double getSalePrice() {
-        return salePrice;
+        return productSale.stream().mapToDouble(ProductSale::getTotalItem).sum();
     }
 
     public void setSalePrice(Double salePrice) {

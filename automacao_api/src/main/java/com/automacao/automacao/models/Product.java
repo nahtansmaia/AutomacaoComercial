@@ -10,8 +10,8 @@ public class Product {
     private String id;
     private Integer code;
     private String name;
-    private double value;
-    private double stock;
+    private Double value;
+    private Double stock;
     @DBRef
     private Category category;
 
@@ -47,11 +47,15 @@ public class Product {
         this.value = value;
     }
 
-    public double getStock() {
+    public void setValue(Double value) {
+        this.value = value;
+    }
+
+    public Double getStock() {
         return stock;
     }
 
-    public void setStock(double stock) {
+    public void setStock(Double stock) {
         this.stock = stock;
     }
 

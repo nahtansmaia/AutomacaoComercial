@@ -52,7 +52,7 @@
           </v-dialog>
         </v-toolbar>
       </template>
-      <template v-slot:item.actionbutton="{ item }">
+      <template v-slot:[`item.actionbutton`]="{ item }">
         <v-icon class="mr-2" color="error" @click="deleteItem(item)">mdi-delete</v-icon>
         <v-icon key="editBtn" class="mr-2" color="blue darken-1" @click="editItem(item)">mdi-pencil</v-icon>
       </template>

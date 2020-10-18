@@ -1,7 +1,6 @@
 package com.automacao.automacao.resource;
 
 import com.automacao.automacao.models.Sale;
-import com.automacao.automacao.repository.ProductRepository;
 import com.automacao.automacao.repository.SaleRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

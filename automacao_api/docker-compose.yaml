@@ -1,0 +1,28 @@
+version: '3.4'
+services: 
+    automacaoapi:
+        build: .
+        image: automacaoapi
+        container_name: automacaoapi
+        ports: 
+            - 8080:8080
+        depends_on: 
+            - mongodb
+        networks: 
+            - spring-mongo
+    mongodb:
+        image: mongo:4.0.5
+        container_name: mongodb
+        ports: 
+            - 27020:27017
+            - 28020:28017
+        volumes: 
+            - /data/db:/data/db
+        environment: 
+            - AUTH=no
+            - MONGODB_DATABASE='automacao'
+        networks: 
+            - spring-mongo
+networks: 
+    spring-mongo:
+        driver: bridge

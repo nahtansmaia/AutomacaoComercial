@@ -1,10 +1,7 @@
 package com.automacao.automacao.resource;
 
-import com.automacao.automacao.dto.EmployeeDTO;
-import com.automacao.automacao.dto.EmployeeResponseDTO;
 import com.automacao.automacao.dto.ProductDTO;
 import com.automacao.automacao.dto.ProductResponseDTO;
-import com.automacao.automacao.models.Employee;
 import com.automacao.automacao.models.Product;
 import com.automacao.automacao.repository.ProductRepository;
 import io.swagger.annotations.Api;

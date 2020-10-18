@@ -1,13 +1,18 @@
 package com.automacao.automacao.resource;
 
 
+import com.automacao.automacao.dto.CategoryDTO;
+import com.automacao.automacao.dto.CategoryResponseDTO;
 import com.automacao.automacao.models.Category;
 import com.automacao.automacao.repository.CategoryRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,8 +44,9 @@ public class CategoryResource {
 
     @PostMapping("/category")
     @ApiOperation(value = "Insere uma categoria")
-    public Category insertCategory(@RequestBody Category category){
-        return categoryRepository.save(category);
+    public ResponseEntity<CategoryResponseDTO> insertCategory(@Valid @RequestBody CategoryDTO categoryDTO){
+        Category category = categoryRepository.save(categoryDTO.category());
+        return new ResponseEntity<>(CategoryResponseDTO.categoryResponseDTO(category), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/category")

@@ -4,7 +4,7 @@
       >
       <template v-slot:top>
         <v-toolbar flat color="dark">
-          <v-toolbar-title>Clientes</v-toolbar-title>
+          <v-toolbar-title>Pessoas</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-dialog v-model="dialog" max-width="600px">
             <template v-slot:activator="{ on, attrs }">
@@ -17,7 +17,7 @@
               <v-card-text id="CardTextFilter">
                 <v-container>
                   <v-row>
-                    <v-col cols="4">
+                    <v-col cols="3">
                       <v-text-field
                         :rules="[rules.required]"
                         id="code"
@@ -27,7 +27,7 @@
                         v-model="editedItem.code"
                       ></v-text-field>
                     </v-col>
-                    <v-col cols="8">
+                    <v-col cols="6">
                       <v-text-field
                         :rules="[rules.required, rules.maxLenght]"
                         :counter="50"
@@ -37,6 +37,12 @@
                         label="Nome"
                         v-model="editedItem.name"
                       ></v-text-field>
+                    </v-col>
+                    <v-col cols="3">
+                      <v-radio-group v-model="editedItem.type" hide-details>
+                        <v-radio  value="C" label="Cliente"></v-radio>
+                        <v-radio  value="F" label="Fornecedor"></v-radio>
+                      </v-radio-group>
                     </v-col>
                   </v-row>
                 </v-container>
@@ -82,11 +88,12 @@ export default {
     editedItem: {
       code: "",
       name: "",
+      type: "C",
       id: "",
     },
     rules: {
       required: (value) => !!value || "Requerido",
-      maxLenght: v => (v && v.length <= 50) || 'Máximo de 50 caracteres',
+      maxLenght: (v) => (v && v.length <= 50) || "Máximo de 50 caracteres",
     },
     defaultItem: {},
   }),
@@ -95,14 +102,17 @@ export default {
       return this.editedItem.id === "" ? "Novo" : "Editar";
     },
   },
-   mounted() {
+  mounted() {
     this.loadCode();
   },
   methods: {
     verifyField() {
       if (this.editedItem.code == null) {
         document.getElementById("code").focus();
-      } else if (this.editedItem.name == "" || this.editedItem.name.length > 50) {
+      } else if (
+        this.editedItem.name == "" ||
+        this.editedItem.name.length > 50
+      ) {
         document.getElementById("name").focus();
       } else {
         this.save();
@@ -112,7 +122,6 @@ export default {
       EmployeeAxios.MaxCode()
         .then((resposta) => {
           this.editedItem.code = resposta.data + 1;
-          
         })
         .catch(() => {
           this.editedItem.code = 1;
@@ -146,6 +155,7 @@ export default {
           .then(
             // eslint-disable-next-line no-unused-vars
             (resposta) => {
+                console.log(this.editedItem);
               this.editedItem = {};
               this.editedItem.id = "";
               this.$emit("saveItem");

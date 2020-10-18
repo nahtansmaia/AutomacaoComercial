@@ -66,4 +66,12 @@ public class Product {
     public void setCategory(Category category) {
         this.category = category;
     }
+
+    public Product(Integer code, String name, Double value, Double stock, Category category) {
+        this.code = code;
+        this.name = name;
+        this.value = value;
+        this.stock = stock;
+        this.category = category;
+    }
 }

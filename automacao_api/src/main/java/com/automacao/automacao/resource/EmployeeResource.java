@@ -1,12 +1,20 @@
 package com.automacao.automacao.resource;
 
+import com.automacao.automacao.dto.CategoryDTO;
+import com.automacao.automacao.dto.CategoryResponseDTO;
+import com.automacao.automacao.dto.EmployeeDTO;
+import com.automacao.automacao.dto.EmployeeResponseDTO;
+import com.automacao.automacao.models.Category;
 import com.automacao.automacao.models.Employee;
 import com.automacao.automacao.repository.EmployeeRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,8 +46,9 @@ public class EmployeeResource {
 
     @PostMapping("/employee")
     @ApiOperation(value = "Insere um cliente")
-    public Employee insertEmployee(@RequestBody Employee employee){
-        return employeeRepository.save(employee);
+    public ResponseEntity<EmployeeResponseDTO> insertEmployee(@Valid @RequestBody EmployeeDTO employeeDTO){
+        Employee employee = employeeRepository.save(employeeDTO.employee());
+        return new ResponseEntity<>(EmployeeResponseDTO.employeeResponseDTO(employee), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/employee")

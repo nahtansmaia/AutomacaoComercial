@@ -26,6 +26,7 @@ export default {
       },
       { text: "Código", value: "code" },
       { text: "Nome", value: "name" },
+      { text: "Tipo", value: "type" },
       { text: "", value: "actionbutton", sortable: false },
     ],
     items: [],

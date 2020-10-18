@@ -10,6 +10,13 @@ public class Employee {
     private String id;
     private Integer code;
     private String name;
+    private String type;
+
+    public Employee(Integer code, String name, String type) {
+        this.code = code;
+        this.name = name;
+        this.type = type;
+    }
 
     public String getId() {
         return id;
@@ -34,4 +41,8 @@ public class Employee {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getType() { return type; }
+
+    public void setType(String type) { this.type = type; }
 }

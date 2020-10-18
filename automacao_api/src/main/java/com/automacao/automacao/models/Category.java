@@ -33,4 +33,9 @@ public class Category {
     public void setName(String name) {
         this.name = name;
     }
+
+    public Category(Integer code, String name){
+        this.code = code;
+        this.name = name;
+    }
 }

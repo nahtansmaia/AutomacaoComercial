@@ -33,7 +33,10 @@ export default {
     },
     ListEmployeeAxios() {
       EmployeeAxios.ListEmployee().then((resposta) => {
-        this.employee = resposta.data;
+        const res = resposta.data;
+        this.employee = res.filter(function(employee){
+          return employee.type === "C"
+        });
       });
     },
     ListProductAxios() {

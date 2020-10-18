@@ -29,7 +29,7 @@
                 <v-icon>mdi-account-multiple</v-icon>
               </v-list-item-action>
               <v-list-item-content>
-                Clientes
+                Pessoas
               </v-list-item-content>
             </v-list-item>
             <!-- Category Button -->
@@ -70,21 +70,24 @@
           <v-toolbar-title>Automação </v-toolbar-title>
         </v-app-bar>
         <!-- Float Button -->
-        <v-btn bottom color="red" name="add" fab fixed right large @click=" navigation('Sales')">
-          <v-icon>mdi-plus</v-icon>
-        </v-btn>
+         <floatbutton/>
+        <v-icon >mdi-plus</v-icon>
       </v-app>
     </v-app>
   </div>
 </template>
 
 <script>
+import floatbutton from './components/FloatButton';
+
 export default {
   name: "App",
   props: {
     source: String,
   },
-
+  components:{
+    floatbutton
+  },
   data: () => ({
     drawer: false,
   }),

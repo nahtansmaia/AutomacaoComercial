@@ -1,12 +1,20 @@
 package com.automacao.automacao.resource;
 
+import com.automacao.automacao.dto.EmployeeDTO;
+import com.automacao.automacao.dto.EmployeeResponseDTO;
+import com.automacao.automacao.dto.ProductDTO;
+import com.automacao.automacao.dto.ProductResponseDTO;
+import com.automacao.automacao.models.Employee;
 import com.automacao.automacao.models.Product;
 import com.automacao.automacao.repository.ProductRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,10 +45,15 @@ public class ProductResource {
         return this.productRepository.maxCodeProduct();
     }
 
-    @PostMapping("/product")
-    @ApiOperation(value = "Insere um produto")
     public Product insertProduct(@RequestBody Product product){
         return productRepository.save(product);
+    }
+
+    @PostMapping("/product")
+    @ApiOperation(value = "Insere um produto")
+    public ResponseEntity<ProductResponseDTO> insertProduct(@Valid @RequestBody ProductDTO productDTO){
+        Product product = productRepository.save(productDTO.product());
+        return new ResponseEntity<>(ProductResponseDTO.productResponseDTO(product), HttpStatus.CREATED);
     }
 
     @PostMapping("/productSaveAll")
